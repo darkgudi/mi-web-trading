@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Web Trading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-template-rows: auto 1fr;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            grid-column: 1 / -1;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        #grafico {
+            background: #e0e0e0;
+            padding: 10px;
+        }
+        #chat {
+            background: #f5f5f5;
+            border-left: 2px solid #ccc;
+            display: flex;
+            flex-direction: column;
+        }
+        #mensajes {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #entrada {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+        #entrada input {
+            flex: 1;
+            padding: 5px;
+        }
+        #entrada button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web de Trading + Asistente IA</h1>
+    </header>
+    
+    <div id="grafico">
+        <h2>Gráfico aquí</h2>
+        <p>Próximamente integración de TradingView...</p>
+    </div>
+    
+    <div id="chat">
+        <div id="mensajes"></div>
+        <div id="entrada">
+            <input type="text" id="texto" placeholder="Escribí aquí...">
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function enviarMensaje() {
+            const texto = document.getElementById("texto").value;
+            if (texto.trim() === "") return;
+            const div = document.createElement("div");
+            div.textContent = "Vos: " + texto;
+            document.getElementById("mensajes").appendChild(div);
+            document.getElementById("texto").value = "";
+            
+            const respuesta = document.createElement("div");
+            respuesta.textContent = "IA: (simulado) Recibí tu mensaje.";
+            document.getElementById("mensajes").appendChild(respuesta);
+            
+            document.getElementById("mensajes").scrollTop = document.getElementById("mensajes").scrollHeight;
+        }
+    </script>
+</body>
+</html>
