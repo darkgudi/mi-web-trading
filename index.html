@@ -52,10 +52,11 @@
         <h1>Web de Trading + Asistente IA</h1>
     </header>
     
-    <div id="grafico">
-        <h2>Gráfico aquí</h2>
-        <p>Próximamente integración de TradingView...</p>
-    </div>
+ <div id="grafico">
+    <h2>Gráfico aquí</h2>
+    <div id="tv-container" style="height:500px;"></div>
+</div>
+
     
     <div id="chat">
         <div id="mensajes"></div>
@@ -65,21 +66,24 @@
         </div>
     </div>
 
-    <script>
-        function enviarMensaje() {
-            const texto = document.getElementById("texto").value;
-            if (texto.trim() === "") return;
-            const div = document.createElement("div");
-            div.textContent = "Vos: " + texto;
-            document.getElementById("mensajes").appendChild(div);
-            document.getElementById("texto").value = "";
-            
-            const respuesta = document.createElement("div");
-            respuesta.textContent = "IA: (simulado) Recibí tu mensaje.";
-            document.getElementById("mensajes").appendChild(respuesta);
-            
-            document.getElementById("mensajes").scrollTop = document.getElementById("mensajes").scrollHeight;
-        }
-    </script>
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+    new TradingView.widget({
+        container_id: "tv-container",
+        autosize: true,
+        symbol: "FX:EURUSD",
+        interval: "15",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "es",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: false,
+        allow_symbol_change: true,
+        hide_side_toolbar: false,
+        withdateranges: true
+    });
+</script>
+
 </body>
 </html>
